@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Cábula do Sarabando</title>
+    <title>Notes to Self</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,7 +17,7 @@
   <body>
     <div class="wrapper">
       <header class="without-description">
-        <h1>Cábula do Sarabando</h1>
+        <h1>Notes to Self</h1>
         <p></p>
         <p class="view"><a href="https://github.com/ssarabando">View the Project on GitHub <small>ssarabando</small></a></p>
         <ul>
@@ -27,7 +27,41 @@
       <section>
         <h3>Welcome</h3>
 
-        <p>This is basically a place that I'll use to write up my programming-related "findings" that I believe will be of use in the future.</p>
+        <p>This is basically a place that I'll use to write up my programming-related notes that I believe will be of use in the future.</p>
+
+        <h3>Don't use RsaProtectedConfigurationProvider with ProtectSection</h3>
+        <i>2012-08-06</i>
+
+        <p>This one cost me a couple of hours last week.<br/>
+        I have an install helper that all of my installation projects use that allows changing application settings and connection strings in a graphical UI instead of mucking around in the configuration files.<br/>
+        Up to this point, all that wasn't being encrypted as the product was still on a "beta" stage and it was practical to have it all in plain text.<br/>
+        Now that the product is ready to be sent into production, the need to encrypt some sections in the configuration files arose.<br/>
+        I decided to use the <a href="http://msdn.microsoft.com/en-us/library/system.configuration.sectioninformation.protectsection.aspx"><code>ProtectSection</code></a> method of the SectionInformation class as it seemed the most cost efficient way of doing it.<br/>
+        Since it expects one of two possible "protection providers" (<code>RsaProtectedConfigurationProvider</code> or <code>DataProtectionConfigurationProvider</code>), and not being an expert in security issues, I googled around a little in order to choose one.<br/>
+        As most of the articles that I found about the subject focused on the RSA provider (and I did not found any clear advantage in using the other one) I decided to go with that.<br/>
+        In order to implement the encryption I only needed to change the save method's logic which ended up somewhat like this:</p>
+        <pre><code>private void UpdateConnectionString(ConnectionStringsSection csSection,
+    IEnumerable&ltKeyValuePair&ltstring, string&gt&gt connStrings)
+{
+    foreach (var connString in connStrings)
+    {
+        var key = connString.Key;
+        var matchingConnString = csSection.ConnectionStrings
+            .Cast<ConnectionStringSettings>()
+            .SingleOrDefault(cs =&gt
+                StringComparer.OrdinalIgnoreCase.Equals(cs.Name, key));
+        if (matchingConnString != null)
+            matchingConnString.ConnectionString = connString.Value;
+    }
+    csSection.SectionInformation.ProtectSection("RsaProtectedConfigurationProvider");
+    csSection.SectionInformation.ForceSave = true;
+}</code></pre>
+        <p>This worked (as in no errors thrown and the section was encrypted) <i>but</i> when I tried to read in back, it would throw an <i>Unrecognized element 'setting'</i> exception.</p>
+        <p>After fiddling around with the code and doing quite a few "googles", I found out that it was a bug in the .NET 4 Framework with more than one year of age.<br/>
+        According to <a href="http://support.microsoft.com/kb/2548766">this</a> page at Microsoft Support, this happens because <i>«white space is not preserved by the method in the <b>RSACryptoServiceProvider</b> class.»</i><br/>
+        The only way to solve this is by either installing an hotfix (which you can get only by contacting Microsoft Support) or using another provider.<br/>
+        Since I have no desire of having to deploy an hotfix to every customer and development/testing machine, I ended up using the <code>DataProtectionConfigurationProvider</code> instead.</p>
+        <p>So, in summary: don't use the <code>RsaProtectedConfigurationProvider</code> with <code>ProtectSection</code>. It'll bite you.</p>
 
         <!--
 <pre><code>$ cd your_repo_root/repo_name
