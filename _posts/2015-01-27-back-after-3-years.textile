@@ -16,4 +16,4 @@ It has been a while since I last touched an ASP.NET MVC site (since version 3) s
 Well, at least somethings stay as hard as ever, namely "globalization".
 As for the Crystal Report's viewer, I've ended up just returning a rendered PDF file stream. It has all the functionality my users expect (zoom, search and pagination).
 
-So, my next post will be about the [Crystal Reports prototype implementation]{% post_url 2015-01-28-replacing-the-cr-viewer %} and the one after that about the dreaded globalization.
+So, my next post will be about the Crystal Reports prototype implementation and the one after that about the dreaded globalization.
