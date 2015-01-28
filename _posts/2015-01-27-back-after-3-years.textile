@@ -6,7 +6,7 @@ comments: False
 
 h1. {{ page.title }}
 
-p(meta). 28 Jan 2015
+p(meta). 27 Jan 2015
 
 First post in almost 3 years. I've been lazy.
 
