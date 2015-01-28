@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Back after almost 3 years.
-comments: True
+comments: False
 ---
 
 h1. {{ page.title }}
