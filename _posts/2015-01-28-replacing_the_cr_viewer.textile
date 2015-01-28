@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Finding a replacement for the Crystal Reports viewer in an ASP.NET MVC 5 site
-comments: True
+comments: False
 ---
 
 h1. {{ page.title }}
@@ -9,8 +9,8 @@ h1. {{ page.title }}
 p(meta). 28 Jan 2015
 
 OK... this one was easy.
-For starters, the objective was to find an easy to code and maintain a replacement for a WPF MVVM system (running as a "WPF XAML Browser Application":https://msdn.microsoft.com/en-us/library/aa970060(v=vs.90).aspx) that, among other functionality, allows for an user to open a "window" in the browser, input/choose some filters and preview a report that he or she could then export to PDF or print.
-Those filters are of the usual kind: drop down lists, check boxes and radio buttons, date pickers, numeric spinners and normal text input boxes. Some come pre-filled (like the lists' items that come from the database) and many are checked against the usual constraints: required, maximum length and pattern matching come to mind.
+For starters, the objective was to find an easy to code and maintain a replacement for a WPF MVVM system (running as a "WPF XAML Browser Application":https://msdn.microsoft.com/en-us/library/aa970060(v=vs.90).aspx) that, among other functionality, allows for an user to open a "window" in the browser, input/choose some filters and preview a report that he or she could export to PDF or print.
+Those filters are the usual kind: drop down lists, check boxes and radio buttons, date pickers, numeric spinners and normal text input boxes. Some come pre-filled (like the lists' items that come from the database) and many are checked against the usual constraints: required, maximum length and pattern matching for example.
 
 I first created a view model class that represented the filters. I also used this class to decorate any constrained members with the necessary data annotations. This step was mostly copy-and-paste. I had to replace some data types (like the @ObservableCollection@ that was replaced by @ICollection<SelectListItem>@) but nothing major.
 Example:
