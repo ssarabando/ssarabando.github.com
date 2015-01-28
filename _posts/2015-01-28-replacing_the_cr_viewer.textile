@@ -125,3 +125,10 @@ That was pretty much it.
 It works as expected and I can use already existing code and assets almost as is.
 
 Next, globalization!
+
+h6. References
+
+This solution was heavily influenced by the following posts:
+
+* "Crystal Reports in ASP.NET MVC (_coderguy123_ answer)":http://stackoverflow.com/a/2747571/215576
+* "Crystal Reports for Visual Studio 2010 Error":http://stackoverflow.com/q/4294762/215576
