@@ -126,7 +126,7 @@ It works as expected and I can use already existing code and assets almost as is
 
 Next, globalization!
 
-h6. References
+h5. References
 
 This solution was heavily influenced by the following posts:
 
