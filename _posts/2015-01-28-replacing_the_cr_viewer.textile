@@ -83,7 +83,7 @@ Then I copied both the dataset and the report files from the existing WPF projec
 Note that the report has to have a build action of @Content@ (it was embedded in the WPF project). I also use @Copy if newer@ so that it is properly updated when I build the project.
 I also manually changed the namespaces to match the new project's namespace.
 
-I then added a new MVC controller (an empty one) and added two methods: an @Index@ one (to show a view with the filters) and a @Show@ method (so the page can @POST@ the filters and get the report back).
+Later, I added a new MVC controller (an empty one) and added two methods: an @Index@ one (to show a view with the filters) and a @Show@ method (so the page can @POST@ the filters and get the report back).
 
 {% highlight c# %}
 public class StatementReportController : Controller {
@@ -122,6 +122,6 @@ Notes:
 # The @ExportFormatType@ is defined in the @CrystalDecisions.Shared@ namespace.
 
 That was pretty much it.
-It works as expected and I can use already existing code and assets almost as-is.
+It works as expected and I can use already existing code and assets almost as is.
 
 Next, globalization!
