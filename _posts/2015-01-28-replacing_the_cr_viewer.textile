@@ -89,9 +89,8 @@ I then added a new MVC controller (an empty one) and added two methods: an @Inde
 public class StatementReportController : Controller {
     public ActionResult Index() {
         var model = new StatementReportViewModel();
-        // Fill the model and return a View with it
-        // (not showing it here and not using async
-        // for now).
+        // Fill the model and return a View with it (not showing it here and not
+        // using async for now).
         return View(model);
     }
 
@@ -104,10 +103,8 @@ public class StatementReportController : Controller {
         DateTime? endDate
     ) {
         var dataset = new StatementReportDataSet();
-        // Fill the dataset with the data (restricted
-        // according to the filters received)
-        // (again not showed here and not using async
-        // for now either).
+        // Fill the dataset with the data (restricted according to the filters
+        // received). Again, not showed here and not using async for now either.
         var report = new ReportDocument();
         report.Load(Server.MapPath("~/Reports/StatementReport.rpt"));
         report.SetDataSource(dataset);
