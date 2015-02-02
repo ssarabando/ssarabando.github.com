@@ -16,7 +16,7 @@ Now, you'll need to install both `PyWin32` and `RxPy` (I used `pip` for both) fo
 
 The Rx part is straightforward: just declare an observable timer and subscribe to it. Example:
 
-{% hightlight python %}
+{% highlight python %}
 import rx
 # Start a timer in 5s and then have it 'tick' every 1s
 timer = rx.Observable.timer(5000, 1000)
@@ -26,7 +26,7 @@ subscription = timer.subscribe(lambda t: print(t))
 
 Bolting in the Windows service bits is, again, straightforward:
 
-{% hightlight python %}
+{% highlight python %}
 import rx
 import servicemanager
 import win32event
@@ -70,7 +70,7 @@ Of course, only after I installed and run it, did I observe that it wasn't outpu
 Only then I understood why the recipe was using an event: to signal a stop event.
 That led me to this:
 
-{% hightlight python %}
+{% highlight python %}
 import rx
 import servicemanager
 import win32event
