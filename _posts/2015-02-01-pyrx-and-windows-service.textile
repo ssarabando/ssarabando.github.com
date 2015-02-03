@@ -66,9 +66,9 @@ if __name__ == '__main__':
     win32serviceutil.HandleCommandLine(MyService)
 {% endhighlight %}
 
-Of course, only after I installed and run it, did I observe that it wasn't outputting anything (just starting and immediately stopping).
-Only then I understood why the recipe was using an event: to signal a stop event.
-That led me to this:
+Of course, the 1st time I run it, it just started and stopped without writing anything.
+Only then I understood why the recipe was using an event: to stop the script from ending until it received a stop event.
+Since my use case is simpler than the one in the recipe (the script must be always running until it receives a stop event), that led me to this:
 
 {% highlight python %}
 import rx
