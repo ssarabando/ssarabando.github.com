@@ -14,17 +14,20 @@ Today I had to debug a Python script _in production_.
 The script was running in a @virtualenv@ and it required command line arguments.
 I also needed **IDLE** to follow up the source and locals.
 
-Setting that up was harder then I thought so I took the time to save it here for future reference:
+Setting that up was harder then I thought so I took the time to save it here for future reference.
 
-# Open a command prompt with administrative privileges and @cd@ into your virtualenv.
-# IDLE requires **Tcl** and **Tk**, so you'll have to symlink the required folders into the virtualenv's @Lib@ folder:
-## Symlink Tcl (in my case, that's v8.6): @mklink /d tcl8.6 C:\Python34\tcl\tcl8.6@
-## Symlink Tk: @mklink /d tk8.6 C:\Python34\tcl\tk8.6@
-# @cd@ into your project's folder and activate your virtualenv.
-# Run the following command:
-## @python -c "from idlelib.PyShell import main; main()"@
-# From the now open IDLE, prepare the environment:
-## In the Python console, write:
+First, open a command prompt with administrative privileges and @cd@ into your virtualenv.
+Now, and since IDLE requires **Tcl** and **Tk**, you'll have to symlink the required folders into the virtualenv's @Lib@ folder.
+In my case, that's Tcl/Tk 8.6:
+
+    mklink /d tcl8.6 C:\Python34\tcl\tcl8.6
+    mklink /d tk8.6 C:\Python34\tcl\tk8.6
+
+Next, @cd@ into your project's folder and activate your virtualenv. Run the following command:
+
+    python -c "from idlelib.PyShell import main; main()"
+
+Now that IDLE is open, let's prepare the environment. In the Python console, write:
 
 {% highlight python %}
 import sys
@@ -35,7 +38,7 @@ g = globals()
 g['__file__'] = filename
 {% endhighlight %}
 
-## Now turn the debugger on and write the next command:
+Time to turn the debugger on and write the next command:
 
 {% highlight python %}
 exec(compile(open(filename, 'rb').read(), filename, 'exec'), g)
