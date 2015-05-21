@@ -49,4 +49,4 @@ This solution was heavily influenced by the following posts:
 
 * "When running a python script in IDLE, is there a way to pass in command line arguments (args)?":http://stackoverflow.com/q/2148994/215576
 * "Alternative to execfile in Python 3.2+?":http://stackoverflow.com/q/6357361/215576 (namely Sven Marnach's "answer":http://stackoverflow.com/a/6357418/215576)
-* "How to launch python Idle from a virtual environment (virtualenv)":http://stackoverflow.com/q/4924068/215576 (mainly _srock_'s "answer":http://stackoverflow.com/a/25773601/215576)
+* "How to launch python Idle from a virtual environment (virtualenv)":http://stackoverflow.com/q/4924068/215576 (mainly _srock_ 's "answer":http://stackoverflow.com/a/25773601/215576)
