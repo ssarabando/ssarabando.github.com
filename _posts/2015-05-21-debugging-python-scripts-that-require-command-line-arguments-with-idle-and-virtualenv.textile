@@ -19,12 +19,12 @@ Setting that up was harder then I thought so I took the time to save it here for
 First, open a command prompt with administrative privileges and @cd@ into your virtualenv.
 Now, and since IDLE requires **Tcl** and **Tk**, you'll have to symlink the required folders into the virtualenv's @Lib@ folder. In my case, that's Tcl/Tk 8.6:
 
-@mklink /d tcl8.6 C:\Python34\tcl\tcl8.6
-mklink /d tk8.6 C:\Python34\tcl\tk8.6@
+    mklink /d tcl8.6 C:\Python34\tcl\tcl8.6
+    mklink /d tk8.6 C:\Python34\tcl\tk8.6
 
 Next, @cd@ into your project's folder and activate your virtualenv. Run the following command:
 
-@python -c "from idlelib.PyShell import main; main()"@
+	python -c "from idlelib.PyShell import main; main()"
 
 Now that IDLE is open, let's prepare the environment. In the Python console, write:
 
