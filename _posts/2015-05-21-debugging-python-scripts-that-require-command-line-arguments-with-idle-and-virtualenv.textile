@@ -8,7 +8,7 @@ h1. {{ page.title }}
 
 p(meta). 21 May 2015
 
-To my future self: the detour I mentioned in the last post is bigger than anticipated and I'm still in Python lands.
+To my future self: the detour I mentioned in the ["last post":{{ site.baseurl }}/2015/02/01/pyrx-and-windows-service.html] is bigger than anticipated and I'm still in Python lands.
 
 Today I had to debug a Python script _in production_.
 The script was running in a @virtualenv@ and it required command line arguments.
