@@ -14,7 +14,7 @@ My problem was simple: given an `enum` in one of the models, how to show it in a
 
 For example, given this enum:
 
-{% hightlight c# %}
+{% highlight c# %}
 public enum SignalType
 {
     Binary,
@@ -24,7 +24,7 @@ public enum SignalType
 
 How to make Razor render the following (simplified) HTML when the browser's UI is in portuguese:
 
-{% hightlight html %}
+{% highlight html %}
 <select>
     <option value="Binary">Binário</option>
     <option value="Analog">Analógico</option>
@@ -33,7 +33,7 @@ How to make Razor render the following (simplified) HTML when the browser's UI i
 
 And this one when in english:
 
-{% hightlight html %}
+{% highlight html %}
 <select>
     <option value="Binary">Binary</option>
     <option value="Analog">Analog</option>
@@ -42,7 +42,7 @@ And this one when in english:
 
 As usual, the plan was to use the `Display` attribute and fetch the string from a resource. Thus, the enum ended up like this:
 
-{% hightlight c# %}
+{% highlight c# %}
 public enum SignalType
 {
     [Display(ResourceType = typeof(Resources), Name = "SignalTypeBinaryCaption")]
@@ -61,7 +61,7 @@ I needed the name from the resource file or from the `Display` attribute or the 
 
 So I took the solution's code and changed the body of the `GetEnumDescription<TEnum>(TEnum value)` method like this:
 
-{% hightlight c# %}
+{% highlight c# %}
 public static string GetEnumDescription<TEnum>(TEnum value)
 {
     FieldInfo fi = value.GetType().GetField(value.ToString());
@@ -81,13 +81,13 @@ If you compare the above with the original you'll notice that I only changed the
 
 With that I can now simply write the following in my Razor view:
 
-{% hightlight asp %}
+{% highlight asp %}
 @Html.EnumDropDownListFor(model => model.SensorSignalType)
 {% endhightlight %}
 
 h4. Full code listing
 
-{% hightlight c# %}
+{% highlight c# %}
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
