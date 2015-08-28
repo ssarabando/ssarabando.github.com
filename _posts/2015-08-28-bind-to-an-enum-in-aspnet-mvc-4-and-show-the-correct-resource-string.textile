@@ -81,7 +81,7 @@ If you compare the above with the original you'll notice that I only changed the
 
 With that I can now simply write the following in my Razor view:
 
-{% highlight asp %}
+{% highlight html %}
 @Html.EnumDropDownListFor(model => model.SensorSignalType)
 {% endhighlight %}
 
