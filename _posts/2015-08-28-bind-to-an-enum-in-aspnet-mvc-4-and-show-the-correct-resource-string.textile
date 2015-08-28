@@ -50,7 +50,7 @@ public enum SignalType
     [Display(ResourceType = typeof(Resources), Name = "SignalTypeAnalogCaption")]
     Analog
 }
-{% endhightlight %}
+{% endhighlight %}
 
 Now I needed to iterate through the `enum`'s members and render them as `option`s.
 
@@ -75,7 +75,7 @@ public static string GetEnumDescription<TEnum>(TEnum value)
 
     return value.ToString();
 }
-{% endhightlight %}
+{% endhighlight %}
 
 If you compare the above with the original you'll notice that I only changed the attribute type being sought (`DisplayAttribute` instead of `DescriptionAttribute`) and invoked the 1st attribute's `GetName()` method instead of returning the `Description` property in the `if` statement.
 
@@ -83,7 +83,7 @@ With that I can now simply write the following in my Razor view:
 
 {% highlight asp %}
 @Html.EnumDropDownListFor(model => model.SensorSignalType)
-{% endhightlight %}
+{% endhighlight %}
 
 h4. Full code listing
 
@@ -158,7 +158,7 @@ namespace System.Web.Mvc.Html
         }
     }
 }
-{% endhightlight %}
+{% endhighlight %}
 
 h4. References
 
