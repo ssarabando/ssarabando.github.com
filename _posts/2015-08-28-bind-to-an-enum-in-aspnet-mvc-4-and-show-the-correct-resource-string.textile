@@ -52,7 +52,7 @@ public enum SignalType
 }
 {% endhighlight %}
 
-Now I needed to iterate through the @enum@'s members and render them as @option@s.
+Now I needed to iterate through the enum's members and render them as @option@ tags.
 
 To my disappointment, there was not built-in helper for that in MVC 4 (although it seems there is in ASP.NET MVC 5.1+) so I was forced to adapt a solution I found in Stack Overflow (see the references).
 
