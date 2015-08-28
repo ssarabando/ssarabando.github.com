@@ -10,7 +10,7 @@ p(meta). 28 Aug 2015
 
 To my future self: this has been a very big detour. I'm again jumping over globalization hurdles, but this time in ASP.NET MVC 4.
 
-My problem was simple: given an `enum` in one of the models, how to show it in a Razor view and in the correct language?
+My problem was simple: given an @enum@ in one of the models, how to show it in a Razor view and in the correct language?
 
 For example, given this enum:
 
@@ -40,7 +40,7 @@ And this one when in english:
 </select>
 {% endhighlight %}
 
-As usual, the plan was to use the `Display` attribute and fetch the string from a resource. Thus, the enum ended up like this:
+As usual, the plan was to use the @Display@ attribute and fetch the string from a resource. Thus, the enum ended up like this:
 
 {% highlight c# %}
 public enum SignalType
@@ -52,14 +52,14 @@ public enum SignalType
 }
 {% endhighlight %}
 
-Now I needed to iterate through the `enum`'s members and render them as `option`s.
+Now I needed to iterate through the @enum@'s members and render them as @option@s.
 
 To my disappointment, there was not built-in helper for that in MVC 4 (although it seems there is in ASP.NET MVC 5.1+) so I was forced to adapt a solution I found in Stack Overflow (see the references).
 
-That solution creates a helper method named `EnumDropDownListFor<>` which we can call from a Razor view as usual but used a custom attribute named `Description` which wasn't what I wanted.
-I needed the name from the resource file or from the `Display` attribute or the enum's value (if no `Display` attribute was present).
+That solution creates a helper method named @EnumDropDownListFor<>@ which we can call from a Razor view as usual but used a custom attribute named @Description@ which wasn't what I wanted.
+I needed the name from the resource file or from the @Display@ attribute or the enum's value (if no @Display@ attribute was present).
 
-So I took the solution's code and changed the body of the `GetEnumDescription<TEnum>(TEnum value)` method like this:
+So I took the solution's code and changed the body of the @GetEnumDescription<TEnum>(TEnum value)@ method like this:
 
 {% highlight c# %}
 public static string GetEnumDescription<TEnum>(TEnum value)
@@ -77,7 +77,7 @@ public static string GetEnumDescription<TEnum>(TEnum value)
 }
 {% endhighlight %}
 
-If you compare the above with the original you'll notice that I only changed the attribute type being sought (`DisplayAttribute` instead of `DescriptionAttribute`) and invoked the 1st attribute's `GetName()` method instead of returning the `Description` property in the `if` statement.
+If you compare the above with the original you'll notice that I only changed the attribute type being sought (@DisplayAttribute@ instead of @DescriptionAttribute@) and invoked the 1st attribute's @GetName()@ method instead of returning the @Description@ property in the @if@ statement.
 
 With that I can now simply write the following in my Razor view:
 
