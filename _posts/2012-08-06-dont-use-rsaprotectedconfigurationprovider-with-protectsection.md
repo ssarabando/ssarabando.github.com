@@ -46,7 +46,7 @@ This worked (as in no errors thrown and the section was encrypted) but when I tr
 
 After fiddling around with the code and doing quite a few "googles", I found out that it was a bug in the .NET 4 Framework with more than one year of age.
 
-According to [this](http://support.microsoft.com/kb/2548766) page at Microsoft Support, this happens because _«white space is not preserved by the method in the *RSACryptoServiceProvider* class.»_
+According to [this](http://support.microsoft.com/kb/2548766) page at Microsoft Support, this happens because _«white space is not preserved by the method in the **RSACryptoServiceProvider** class.»_
 
 The only way to solve this is by either installing an hotfix (which you can get only by contacting Microsoft Support) or using another provider.
 Since I have no desire of having to deploy an hotfix to every customer and development/testing machine, I ended up using the `DataProtectionConfigurationProvider` instead.
