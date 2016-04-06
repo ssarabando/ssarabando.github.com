@@ -8,7 +8,7 @@ h1. {{ page.title }}
 
 p(meta). 2 Feb 2015
 
-To my future self: I had to take a small detour from the announced program. Instead of the ASP.NET MVC 5 globalization hurdles post, I'll be taking notes on how to run a Rx timer subscription from a Python script running as a Windows service.
+To my future self: I had to take a small detour from the announced program. Instead of the ASP.NET MVC 4 globalization hurdles post, I'll be taking notes on how to run a Rx timer subscription from a Python script running as a Windows service.
 
 First things first: I am aware that I could be using @Observable.interval@ and that I could even do this without using Rx at all. The thing is, I'll be using Rx in the near future (if all goes according to plan) and in Python and as a _daemonized_ process so I took this as a low-risk opportunity to test all of those out.
 
