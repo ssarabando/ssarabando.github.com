@@ -1,2 +1,6 @@
+highlighter: rouge
 markdown: kramdown
-pygments: true
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge

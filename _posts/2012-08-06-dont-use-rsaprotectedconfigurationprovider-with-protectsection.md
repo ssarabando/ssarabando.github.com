@@ -3,9 +3,9 @@ layout: post
 title: Don't use RsaProtectedConfigurationProvider with ProtectSection
 ---
 
-h1. {{ page.title }}
+# {{ page.title }}
 
-p(meta). 6 Aug 2012
+_6 Aug 2012_
 
 This one cost me a couple of hours last week.
 I have an install helper that all of my installation projects use that allows changing application settings and connection strings in a graphical UI instead of mucking around in the configuration files.
