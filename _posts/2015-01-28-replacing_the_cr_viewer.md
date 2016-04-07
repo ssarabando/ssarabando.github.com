@@ -125,8 +125,8 @@ public class StatementReportController : Controller {
 
 Notes:
 
-# The `ReportDocument` is defined in the `CrystalDecisions.CrystalReports.Engine` namespace.
-# The `ExportFormatType` is defined in the `CrystalDecisions.Shared` namespace.
+* The `ReportDocument` is defined in the `CrystalDecisions.CrystalReports.Engine` namespace.
+* The `ExportFormatType` is defined in the `CrystalDecisions.Shared` namespace.
 
 That was pretty much it.
 
