@@ -22,11 +22,11 @@ import rx
 timer = rx.Observable.timer(5000, 1000)
 # Just print
 subscription = timer.subscribe(lambda t: print(t))
-{% endhighlight %}
+```
 
 Bolting in the Windows service bits is, again, straightforward:
 
-{% highlight python %}
+``` python
 import rx
 import servicemanager
 import win32event
