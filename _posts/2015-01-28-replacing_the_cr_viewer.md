@@ -86,6 +86,7 @@ To be able to render the report, I had to add the `CrystalDecisions.CrystalRepor
 Then I copied both the dataset and the report files from the existing WPF project and simply pasted them in the new project (pasted the dataset inside the `Models` folder and the report inside the `Reports` folder that I had previously created).
 
 Note that the report has to have a build action of `Content` (it was embedded in the WPF project). I also use `Copy if newer` so that it is properly updated when I build the project.
+
 I also manually changed the namespaces to match the new project's namespace.
 
 Later, I added a new MVC controller (an empty one) and added two methods: an `Index` one (to show a view with the filters) and a `Show` method (so the page can `POST` the filters and get the report back).
@@ -123,6 +124,7 @@ public class StatementReportController : Controller {
 ```
 
 Notes:
+
 # The `ReportDocument` is defined in the `CrystalDecisions.CrystalReports.Engine` namespace.
 # The `ExportFormatType` is defined in the `CrystalDecisions.Shared` namespace.
 
