@@ -4,45 +4,45 @@ title: Bind to an enum in ASP.NET MVC 4 and show the correct resource string
 comments: False
 ---
 
-h1. {{ page.title }}
+# {{ page.title }}
 
-p(meta). 28 Aug 2015
+_28 Aug 2015_
 
 To my future self: this has been a very big detour. I'm again jumping over globalization hurdles, but this time in ASP.NET MVC 4.
 
-My problem was simple: given an @enum@ in one of the models, how to show it in a Razor view and in the correct language?
+My problem was simple: given an `enum` in one of the models, how to show it in a Razor view and in the correct language?
 
 For example, given this enum:
 
-{% highlight c# %}
+``` cs
 public enum SignalType
 {
     Binary,
     Analog
 }
-{% endhighlight %}
+```
 
 How to make Razor render the following (simplified) HTML when the browser's UI is in portuguese:
 
-{% highlight html %}
+``` html
 <select>
     <option value="Binary">Binário</option>
     <option value="Analog">Analógico</option>
 </select>
-{% endhighlight %}
+```
 
 And this one when in english:
 
-{% highlight html %}
+``` html
 <select>
     <option value="Binary">Binary</option>
     <option value="Analog">Analog</option>
 </select>
-{% endhighlight %}
+```
 
-As usual, the plan was to use the @Display@ attribute and fetch the string from a resource. Thus, the enum ended up like this:
+As usual, the plan was to use the `Display` attribute and fetch the string from a resource. Thus, the enum ended up like this:
 
-{% highlight c# %}
+``` cs
 public enum SignalType
 {
     [Display(ResourceType = typeof(Resources), Name = "SignalTypeBinaryCaption")]
@@ -50,18 +50,18 @@ public enum SignalType
     [Display(ResourceType = typeof(Resources), Name = "SignalTypeAnalogCaption")]
     Analog
 }
-{% endhighlight %}
+```
 
-Now I needed to iterate through the enum's members and render them as @option@ tags.
+Now I needed to iterate through the enum's members and render them as `option` tags.
 
 To my disappointment, there was not built-in helper for that in MVC 4 (although it seems there is in ASP.NET MVC 5.1+) so I was forced to adapt a solution I found in Stack Overflow (see the references).
 
-That solution creates a helper method named @EnumDropDownListFor<>@ which we can call from a Razor view as usual but used a custom attribute named @Description@ which wasn't what I wanted.
-I needed the name from the resource file or from the @Display@ attribute or the enum's value (if no @Display@ attribute was present).
+That solution creates a helper method named `EnumDropDownListFor<>` which we can call from a Razor view as usual but used a custom attribute named `Description` which wasn't what I wanted.
+I needed the name from the resource file or from the `Display` attribute or the enum's value (if no `Display` attribute was present).
 
-So I took the solution's code and changed the body of the @GetEnumDescription<TEnum>(TEnum value)@ method like this:
+So I took the solution's code and changed the body of the `GetEnumDescription<TEnum>(TEnum value)` method like this:
 
-{% highlight c# %}
+``` cs
 public static string GetEnumDescription<TEnum>(TEnum value)
 {
     FieldInfo fi = value.GetType().GetField(value.ToString());
@@ -76,19 +76,19 @@ public static string GetEnumDescription<TEnum>(TEnum value)
 
     return value.ToString();
 }
-{% endhighlight %}
+```
 
-If you compare the above with the original you'll notice that I only changed the attribute type being sought (@DisplayAttribute@ instead of @DescriptionAttribute@) and invoked the 1st attribute's @GetName()@ method instead of returning the @Description@ property in the @if@ statement.
+If you compare the above with the original you'll notice that I only changed the attribute type being sought (`DisplayAttribute` instead of `DescriptionAttribute`) and invoked the 1st attribute's `GetName()` method instead of returning the `Description` property in the `if` statement.
 
 With that I can now simply write the following in my Razor view:
 
-{% highlight c# %}
+``` cs
 @Html.EnumDropDownListFor(model => model.SensorSignalType)
-{% endhighlight %}
+```
 
-h4. Full code listing
+#### Full code listing
 
-{% highlight c# %}
+``` cs
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -169,11 +169,10 @@ namespace System.Web.Mvc.Html
         }
     }
 }
-{% endhighlight %}
+```
 
-h4. References
+#### References
 
 This solution was heavily influenced by the following post:
 
-* "How do you create a dropdownlist from an enum in ASP.NET MVC?":http://stackoverflow.com/a/5255108/215576/
-
+* [How do you create a dropdownlist from an enum in ASP.NET MVC?](http://stackoverflow.com/a/5255108/215576/)
