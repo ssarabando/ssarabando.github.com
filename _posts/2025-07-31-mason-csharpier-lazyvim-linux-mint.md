@@ -14,7 +14,7 @@ I've been coding in .NET 8 without major problems besides being unable to use a 
 
 But working without a formatter has been a pain point too, so I decided to figure out why CSharpier (installed with Mason) was not working.
 
-[Turns out](https://github.com/LazyVim/LazyVim/discussions/4596), [LazyVim](https://www.lazyvim.org/) uses [Conform](https://github.com/stevearc/conform.nvim) to do the formatting and it defaults to using LSP formatting unless it is configured for a file type.
+Turns out, [LazyVim](https://www.lazyvim.org/) uses [Conform](https://github.com/stevearc/conform.nvim) to do the formatting and [it defaults to using LSP formatting](https://github.com/LazyVim/LazyVim/discussions/4596) unless it is configured for a file type.
 
 Knowing that, I wrote a first configuration override in `~/.config/nvim/lua/plugins/conform.lua`:
 
