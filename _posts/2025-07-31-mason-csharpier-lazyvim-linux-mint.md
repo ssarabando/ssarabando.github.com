@@ -54,7 +54,7 @@ return {
 }
 ```
 
-Comparing the above with the CSharpier documentation it is clear that the [`format`](https://csharpier.com/docs/CLI) command is missing.
+Comparing the above with the [CSharpier documentation](https://csharpier.com/docs/CLI) it is clear that the `format` command is missing.
 So I added a few more lines to my configuration:
 
 ```lua
