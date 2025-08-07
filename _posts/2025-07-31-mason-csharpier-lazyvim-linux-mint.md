@@ -10,7 +10,7 @@ _2025, July 31st_
 
 Almost two full weeks after moving from Windows 10 to Linux Mint.
 
-I've been coding in .NET 8 without major problems besides being unable to use a LSP (maybe I'll write some other post if I ever find out why).
+I've been coding in .NET 8 without major problems besides being unable to use a LSP (maybe I'll write some other post[^1] if I ever find out why).
 
 But working without a formatter has been a pain point too, so I decided to figure out why CSharpier (installed with Mason) was not working.
 
@@ -96,3 +96,5 @@ return {
 ```
 
 And with all that I have an auto-formatter working even without a LSP.
+
+[^1]: See [my next post]({{ site.baseurl }}/2025/08/07/mason-omnisharp-linux-mint.html).
