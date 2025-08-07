@@ -18,7 +18,5 @@ I do not have much time today, so a quick:
 cd ~/.local/share/nvim/mason/bin
 ln ~/.local/share/nvim/mason/packages/omnisharp/OmniSharp omnisharp
 ```
-```
 
 ... fixes the problem.
-
